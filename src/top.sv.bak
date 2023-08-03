@@ -1,0 +1,48 @@
+`include "./src/CPU.sv"
+//`include "./src/SRAM_wrapper.sv"
+
+module top(
+  input logic clk,
+  input logic rst,
+  input logic [31:0] IM_DO,
+  input logic [31:0] DM_DO,
+  output logic [13:0] IM_A,
+  output logic        DM_OE,
+  output logic [ 3:0] DM_WEB,
+  output logic [13:0] DM_A,
+  output logic [31:0] DM_DI
+);
+  
+
+  //SRAM_wrapper IM1(
+  //  .CK(clk),
+  //  .CS(1'b1),
+  //  .OE(1'b1),
+  //  .WEB(4'hf),//4 bit
+  //  .A(IM_A),//14 bit
+  //  .DI(32'd0),//32 bit
+  //  .DO(IM_DO)//32 bit
+  //);
+  //
+  //SRAM_wrapper DM1(
+  //  .CK(clk),
+  //  .CS(1'b1),
+  //  .OE(DM_OE),
+  //  .WEB(DM_WEB),
+  //  .A(DM_A),
+  //  .DI(DM_DI),
+  //  .DO(DM_DO)
+  //);
+
+  CPU CPU(
+    .clk(clk),
+    .rst(rst),
+    .IM_DO(IM_DO),
+    .DM_DO(DM_DO),
+    .IM_A(IM_A),
+    .DM_OE(DM_OE),
+    .DM_WEB(DM_WEB),
+    .DM_A(DM_A),
+    .DM_DI(DM_DI)
+  );
+endmodule
