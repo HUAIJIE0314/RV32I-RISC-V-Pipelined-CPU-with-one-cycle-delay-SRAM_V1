@@ -80,7 +80,6 @@ logic                                 rs2Sel_EX;
 logic        [1:0]                   rdPCSel_ID;
 logic        [3:0]                  MemWrite_ID;
 logic        [3:0]                  MemWrite_EX;
-logic        [3:0]                  MemWrite_ME;
 logic        [1:0]                  MemtoReg_ID;
 logic        [1:0]                  MemtoReg_EX;
 logic        [1:0]                  MemtoReg_ME;
@@ -111,7 +110,6 @@ logic        [`DATA_WIDTH-1:0]      rs1_data_ID;
 logic        [`DATA_WIDTH-1:0]      rs1_data_EX;
 logic        [`DATA_WIDTH-1:0]      rs2_data_ID;
 logic        [`DATA_WIDTH-1:0]      rs2_data_EX;
-logic        [`DATA_WIDTH-1:0]      rs2_data_ME;
 // << Imm_Gen >>               
 logic        [`DATA_WIDTH-1:0]       imm_out_ID;
 logic        [`DATA_WIDTH-1:0]       imm_out_EX;
@@ -462,12 +460,10 @@ Pipe_Reg_F  #(.WIDTH(32)) ID_EX_rdPC        (.clk_i(clk), .rst_i(rst),          
 Pipe_Reg    #(.WIDTH( 3)) EX_ME_funct3      (.clk_i(clk), .rst_i(rst),                                         .data_i(funct3_EX     ), .data_o(funct3_ME     ));
 Pipe_Reg    #(.WIDTH( 5)) EX_ME_rd_addr     (.clk_i(clk), .rst_i(rst),                                         .data_i(rd_addr_EX    ), .data_o(rd_addr_ME    ));
 Pipe_Reg    #(.WIDTH( 1)) EX_ME_RegWrite    (.clk_i(clk), .rst_i(rst),                                         .data_i(RegWrite_EX   ), .data_o(RegWrite_ME   ));
-Pipe_Reg    #(.WIDTH( 4)) EX_ME_MemWrite    (.clk_i(clk), .rst_i(rst),                                         .data_i(MemWrite_EX   ), .data_o(MemWrite_ME   ));
 Pipe_Reg    #(.WIDTH( 2)) EX_ME_MemtoReg    (.clk_i(clk), .rst_i(rst),                                         .data_i(MemtoReg_EX   ), .data_o(MemtoReg_ME   ));
 Pipe_Reg    #(.WIDTH( 1)) EX_ME_MemRead     (.clk_i(clk), .rst_i(rst),                                         .data_i(MemRead_EX    ), .data_o(MemRead_ME    ));
 Pipe_Reg    #(.WIDTH(32)) EX_ME_ALUresult   (.clk_i(clk), .rst_i(rst),                                         .data_i(ALUresult_EX  ), .data_o(ALUresult_ME  ));
 Pipe_Reg    #(.WIDTH(32)) EX_ME_CSR_OUT     (.clk_i(clk), .rst_i(rst),                                         .data_i(CSR_OUT_EX    ), .data_o(CSR_OUT_ME    ));
-Pipe_Reg    #(.WIDTH(32)) EX_ME_rs2_data    (.clk_i(clk), .rst_i(rst),                                         .data_i(rs2orForward  ), .data_o(rs2_data_ME   ));//rs2_data_EX -> rs2orForward
 Pipe_Reg    #(.WIDTH(32)) EX_ME_rdPC        (.clk_i(clk), .rst_i(rst),                                         .data_i(rdPC_EX       ), .data_o(rdPC_ME       ));
 
 // MEM-WB pipelined register                                                                                 
