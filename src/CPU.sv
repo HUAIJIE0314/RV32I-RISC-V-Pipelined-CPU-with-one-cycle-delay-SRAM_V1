@@ -161,7 +161,7 @@ assign CSRSel_ID   = {Inst_ID[21], Inst_ID[27]};
 
 // << branch target >>
 assign PC_plus4_IF = PC_pres_IF_tmp + 32'd4;
-assign branchTarge = rs1orFWorPC + imm_out_ID;
+assign branchTarget = rs1orFWorPC + imm_out_ID;
 
 // << branch_taken >>
 assign branch_taken = (Branch_ID&branch_flag_ID)|Jal_ID|Jalr_ID;
